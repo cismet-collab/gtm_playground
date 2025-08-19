@@ -40,7 +40,6 @@ app.get('*', (_req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Overlay server running on http://127.0.0.1:${PORT}`);
-    console.log(`Base: ${BASE_DIR}`);
-    console.log(`Overrides (/dev): ${DEV_OVERRIDE_DIR}`);
+    console.log(`Playground server running on http://127.0.0.1:${PORT}/#/playgroundConfig?configServer=http://127.0.0.1:${PORT}`);
+
 });

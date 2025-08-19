@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "echoLink": "echo 'open your playground under http://127.0.0.1:4202/#/playgroundConfig/?configServer=http://127.0.0.1:4201'",
     "update-deployments": "git submodule update --remote --merge",
-    "serve:base": "http-server dev-deployment -p 4202 -s",
-    "serve:localConfig": "http-server local -p 4201 -P http://127.0.0.1:4202 -s --cors",
-    "dev": "npm run serve:base & sleep 1 && npm run serve:localConfig",
-    "serve:overlay": "HOST=0.0.0.0 PORT=4201 DEPLOY_DIR=dev-deployment node server.js",
-    "serve:overlay:live": "HOST=0.0.0.0 PORT=4201 DEPLOY_DIR=live-deployment node server.js"
+    "dev": "HOST=0.0.0.0 PORT=4201 DEPLOY_DIR=dev-deployment node server.js",
+    "live": "HOST=0.0.0.0 PORT=4201 DEPLOY_DIR=live-deployment node server.js"
   },
   "author": "",
   "license": "ISC",
