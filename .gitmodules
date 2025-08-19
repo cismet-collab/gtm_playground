@@ -1,0 +1,8 @@
+[submodule "dev-deployment"]
+	path = dev-deployment
+	url = git@github.com:carma-dev-deployments/generic-topicmap.git
+	branch = gh-pages
+[submodule "live-deployment"]
+	path = live-deployment
+	url = git@github.com:digital-twin-wuppertal-live/generic-topicmap.git
+	branch = gh-pages
