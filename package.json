@@ -2,7 +2,16 @@
   "name": "gtm_playground",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "echoLink": "echo 'open your playground under http://127.0.0.1:4202/#/playgroundConfig/?configServer=http://127.0.0.1:4201'",
+    "update-deployments": "git submodule update --remote --merge",
+    "serve:base": "http-server dev-deployment -p 4202 -s",
+    "serve:localConfig": "http-server local -p 4201 -P http://127.0.0.1:4202 -s --cors",
+    "dev": "npm run serve:base & sleep 1 && npm run serve:localConfig"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
 }
