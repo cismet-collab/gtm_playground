@@ -1,6 +1,6 @@
 {
   "tm": {
-    "windowtitle": "Tmp-Dev Wuppertal",
+    "windowtitle": "Tmp-Dev Wuppertal local",
     "noFeatureCollection": true,
     "applicationMenuIntroductionMarkdown": "Hier steht der erste Satz der Einleitung.",
     "previewMapPosition": "lat=51.26041096180761&lng=7.175016403198243&zoom=13",
@@ -50,7 +50,7 @@
         "layerkey": "rvr-spw2_light-tiles",
         "src": "/images/rain-hazard-map-bg/citymap.png",
         "title": "Stadtplan"
-      }, 
+      },
       "osm": {
         "layerkey": "osm",
         "src": "/images/rain-hazard-map-bg/osm.png",
