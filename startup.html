@@ -50,15 +50,15 @@
             };
           }
 
-          /*
-          // Auto-redirect (enable by uncommenting):
-          try { window.location.replace(target); } catch(_) {}
-          setTimeout(function(){
+          // Auto-redirect
+          try {
+            window.location.replace(target);
+          } catch (_) {}
+          setTimeout(function () {
             if (window.location.href !== target) {
               window.location.href = target;
             }
           }, 1000);
-          */
         } catch (e) {
           var dbg = document.getElementById("debug");
           if (dbg) dbg.textContent = "Startup failed: " + e;

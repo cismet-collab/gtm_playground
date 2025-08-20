@@ -37,7 +37,7 @@ app.use(express.static(BASE_DIR, {
 
 // Shareable startup helper: append configServer derived from current public URL and redirect
 app.get('/startupForLocalDevelopment', (_req, res) => {
-    res.sendFile(path.join(__dirname, 'local', 'startup.html'));
+    res.sendFile(path.join(__dirname, ".", 'startup.html'));
 });
 
 // SPA fallback to the base index.html (safe for hash routing too)
