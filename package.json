@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "update-deployments": "git submodule update --remote --merge",
+    "update-deployments": "git submodule update --init --remote --recursive --force --checkout",
+    "update-deployments:clean": "git submodule foreach --recursive 'git reset --hard && git clean -fdx' && npm run update-deployments",
     "dev": "HOST=0.0.0.0 PORT=4201 DEPLOY_DIR=dev-deployment node server.js",
     "live": "HOST=0.0.0.0 PORT=4201 DEPLOY_DIR=live-deployment node server.js"
   },
