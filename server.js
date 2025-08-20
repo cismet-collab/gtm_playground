@@ -39,6 +39,13 @@ app.get('/startupForLocalDevelopment', (_req, res) => {
     res.sendFile(path.join(__dirname, 'local', 'startup.html'));
 });
 
+// Optional: when enabled, redirect the bare root to the startup helper.
+if (process.env.STARTUP_REDIRECT === '1') {
+    app.get('/', (_req, res) => {
+        res.redirect(302, '/startupForLocalDevelopment');
+    });
+}
+
 // SPA fallback to the base index.html (safe for hash routing too)
 app.get('*', (_req, res) => {
     res.sendFile(path.join(BASE_DIR, 'index.html'));
@@ -46,4 +53,7 @@ app.get('*', (_req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Playground server running on http://127.0.0.1:${PORT}/startupForLocalDevelopment`);
+    if (process.env.STARTUP_REDIRECT === '1') {
+        console.log('Root (/) will redirect to /startupForLocalDevelopment because STARTUP_REDIRECT=1');
+    }
 });
