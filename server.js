@@ -10,6 +10,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 4201;
 const DEPLOY_DIR = process.env.DEPLOY_DIR || 'dev-deployment'; // or 'live-deployment'
+const VSCODE_PROXY_URI = process.env.VSCODE_PROXY_URI;
 
 const app = express();
 
@@ -45,7 +46,13 @@ app.get('*', (_req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Playground server running on http://127.0.0.1:${PORT}/startupForLocalDevelopment`);
-
     console.log(`Serving from: ${BASE_DIR}`);
+
+    if (VSCODE_PROXY_URI) {
+        const baseUrl = VSCODE_PROXY_URI.replace('{{port}}', PORT);
+        console.log("\n\n\n\n\n🚨🚨🚨 use this url 👇 for local development: ")
+        console.log(`External URL: ${baseUrl}startupForLocalDevelopment`);
+      } else {
+        console.log(`Local URL: http://localhost:${PORT}/startupForLocalDevelopment`);
+      }
 });
