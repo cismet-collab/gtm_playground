@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="utf-8" />
+  <title>Starting…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <body
+    style="
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+        sans-serif;
+      padding: 16px;
+    "
+  >
+    <h1 style="margin: 0 0 8px; font-size: 18px">
+      Starting playground for local Development…
+    </h1>
+    <p>If you are not redirected automatically, click the link below.</p>
+    <p><a id="continue" href="#">Continue</a></p>
+
+    <script>
+      (function () {
+        const startUpPath = "/startupForLocalDevelopment";
+        const startupConfig = "playgroundConfig";
+        try {
+          function computeTarget() {
+            var u = new URL(window.location.href);
+            var pathname = u.pathname;
+            if (pathname.endsWith(startUpPath + "/"))
+              pathname = pathname.slice(0, -startUpPath + "/".length);
+            else if (pathname.endsWith(startUpPath))
+              pathname = pathname.slice(0, -startUpPath.length);
+            if (pathname.length > 1 && pathname.endsWith("/"))
+              pathname = pathname.slice(0, -1);
+            var base = u.origin + pathname;
+            var hash = window.location.hash || "#/" + startupConfig;
+            var parts = hash.split("?");
+            var pathPart = parts[0];
+            var qs = new URLSearchParams(parts[1] || "");
+            if (!qs.has("configServer")) qs.set("configServer", base);
+            return base + pathPart + "?" + qs.toString();
+          }
+          var target = computeTarget();
+          window.__computeTarget = computeTarget;
+          var a = document.getElementById("continue");
+          if (a) {
+            a.href = target;
+            a.textContent = target;
+            a.onclick = function (ev) {
+              ev.preventDefault();
+              location.href = computeTarget();
+            };
+          }
+
+          /*
+          // Auto-redirect (enable by uncommenting):
+          try { window.location.replace(target); } catch(_) {}
+          setTimeout(function(){
+            if (window.location.href !== target) {
+              window.location.href = target;
+            }
+          }, 1000);
+          */
+        } catch (e) {
+          var dbg = document.getElementById("debug");
+          if (dbg) dbg.textContent = "Startup failed: " + e;
+        }
+      })();
+    </script>
+    <noscript>Enable JavaScript to continue.</noscript>
+  </body>
+</html>
